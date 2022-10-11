@@ -2,8 +2,9 @@ const express = require("express");
 const morgan = require("morgan");
 const helmet = require("helmet");
 const config = require("./middleware/config");
+const pool = require("./database");
 //port number
-const port = config.PORT || 3000;
+const port = config.port || 3000;
 // create instance serer
 const app = express();
 
@@ -19,6 +20,19 @@ app.get("/", (req, res) => {
   res.send("hello world");
 });
 
+//test database
+pool.connect().then((client) => {
+  return client
+    .query("SELECT NOW()")
+    .then((res) => {
+      client.release();
+      console.log(res.rows);
+    })
+    .catch((err) => {
+      client.release();
+      console.log(err.stack);
+    });
+});
 //error handler
 app.use((err, req, res, next) => {
   res.send({
