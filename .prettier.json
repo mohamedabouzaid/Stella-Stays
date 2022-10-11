@@ -1,5 +1,5 @@
 {
-  "singleQutes": false,
+  "singleQutes": true,
   "semi": true,
   "printWidth": 80,
   "backetSpacing": true

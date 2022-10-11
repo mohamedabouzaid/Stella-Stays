@@ -2,7 +2,8 @@ const express = require("express");
 const morgan = require("morgan");
 const helmet = require("helmet");
 const config = require("./middleware/config");
-const pool = require("./database");
+const pool = require("./database/index");
+const Unit = require("./models/unitModel");
 //port number
 const port = config.port || 3000;
 // create instance serer
@@ -18,6 +19,11 @@ app.use(morgan("combined"));
 
 app.get("/", (req, res) => {
   res.send("hello world");
+});
+app.get("/add", async (req, res) => {
+  const x = { id: 124, unit_name: "ilexcd" };
+  const unit = await new Unit().create(x);
+  res.send(unit);
 });
 
 //test database
