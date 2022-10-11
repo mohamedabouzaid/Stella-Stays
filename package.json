@@ -20,6 +20,7 @@
   "homepage": "https://github.com/mohamedabouzaid/Stella-Stays#readme",
   "dependencies": {
     "express": "^4.18.2",
+    "helmet": "^6.0.0",
     "prettier": "^2.7.1"
   },
   "devDependencies": {
