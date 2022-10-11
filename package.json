@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/mohamedabouzaid/Stella-Stays#readme",
   "dependencies": {
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "helmet": "^6.0.0",
     "prettier": "^2.7.1"

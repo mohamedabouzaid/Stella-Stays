@@ -1,8 +1,9 @@
 const express = require("express");
 const morgan = require("morgan");
 const helmet = require("helmet");
+const config = require("./middleware/config");
 //port number
-const port = 3000;
+const port = config.PORT || 3000;
 // create instance serer
 const app = express();
 
