@@ -1,0 +1,29 @@
+{
+  "name": "stella-stays",
+  "version": "1.0.0",
+  "description": "Back End Task",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mohamedabouzaid/Stella-Stays.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "author": "Abouzaid",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mohamedabouzaid/Stella-Stays/issues"
+  },
+  "homepage": "https://github.com/mohamedabouzaid/Stella-Stays#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "prettier": "^2.7.1"
+  },
+  "devDependencies": {
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.20"
+  }
+}
