@@ -17,6 +17,16 @@ app.use(morgan("combined"));
 app.get("/", (req, res) => {
   res.send("hello world");
 });
+
+//error handler
+app.use((err, req, res, next) => {
+  res.send({
+    status: err.statusCode || 500,
+    message: err.message || "Server Error",
+    errors: err.errors || [],
+  });
+});
+
 app.listen(port, () => {
   console.log(`express app listening on port ${port}`);
 });
