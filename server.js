@@ -1,9 +1,13 @@
 const express = require("express");
 const morgan = require("morgan");
-const helmet = require("helmet");
+//const helmet = require("helmet");
 const config = require("./middleware/config");
 const pool = require("./database/index");
 const Unit = require("./models/unitModel");
+//graph Ql
+const { graphqlHTTP } = require("express-graphql");
+const schema = require("./graphql/schema");
+const root = require("./graphql/resolvers");
 //port number
 const port = config.port || 3000;
 // create instance serer
@@ -13,7 +17,7 @@ const app = express();
 // parse incoming request midleware
 app.use(express.json());
 //http security middleware
-app.use(helmet());
+//app.use(helmet());
 //HTTP request logger middleware
 app.use(morgan("combined"));
 
@@ -39,6 +43,17 @@ pool.connect().then((client) => {
       console.log(err.stack);
     });
 });
+
+//graph route
+app.use(
+  "/graphql",
+  graphqlHTTP({
+    schema: schema,
+    rootValue: root,
+    graphiql: true,
+  })
+);
+
 //error handler
 app.use((err, req, res, next) => {
   res.send({
