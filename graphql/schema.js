@@ -1,22 +1,14 @@
 var { buildSchema } = require("graphql");
 module.exports = buildSchema(`
-type RootQuery{
-    hello:DataType!
-}
-
-type DataType{
-    text:String!
-    views:Int!
-}
 
 
-type RootMutation{
-    createUnit(UnitInput:UnitInputData!):Unit!
+type RootMutation{   
     createReservation(ReservationInput:ReservationInputData!):Reservation!
+    updateReservation(UpdateReservationInput:editReservationInputData!):Reservation!
+    cancelReservation(DeleteReservationInput:editReservationInputData!):Reservation!
 }
-input UnitInputData{
-    unit_name:String
-}
+
+
 
 input ReservationInputData{
     unitID: ID!
@@ -24,11 +16,16 @@ input ReservationInputData{
     checkIn: String!
     checkOut: String!
 }
-
-type Unit{
-    unit_name:String!
-    id:ID!
+input editReservationInputData
+{
+     reservationID: ID!
+     unitID: ID!
+     guestName: String!
+     checkIn: String!
+     checkOut: String!
 }
+
+
 type Reservation{
     unitID: ID!
     guestName: String!
@@ -37,8 +34,8 @@ type Reservation{
 }
 
 schema{
-    query:RootQuery
-    mutation:RootMutation
+  
+  mutation:RootMutation
 }  
 
 `);
